@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eticaret_uygulama.Data;
+using eticaret_uygulama.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using eticaret_uygulama.Data;
-using eticaret_uygulama.Models;
-using eticaret_uygulama.Data;
-using eticaret_uygulama.Models;
-
 namespace eticaret_uygula.Controllers
 {
     public class slidersController : Controller
@@ -63,7 +60,6 @@ namespace eticaret_uygula.Controllers
             if (ImageUpload != null)
             {
                 var uzanti = Path.GetExtension(ImageUpload.FileName);
-                //bocek.png  .png domates.jpg  .jpg
                 string yeniisim = Guid.NewGuid().ToString() + uzanti;
 
                 string yol = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/Slider/" + yeniisim);
@@ -112,7 +108,6 @@ namespace eticaret_uygula.Controllers
             if (ImageUpload != null)
             {
                 var uzanti = Path.GetExtension(ImageUpload.FileName);
-                //bocek.png  .png domates.jpg  .jpg
                 string yeniisim = Guid.NewGuid().ToString() + uzanti;
 
                 string yol = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/Slider/" + yeniisim);

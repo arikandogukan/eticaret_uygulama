@@ -1,4 +1,6 @@
-﻿using eticaret_uygulama.Models;
+﻿
+using eticaret_uygulama.Data;
+using eticaret_uygulama.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,17 +9,22 @@ namespace eticaret_uygulama.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
+        public IActionResult Detay(int id)
+        {
+            var result = _context.Products.Find(id);
+            return View(result);
+        }
         public IActionResult Privacy()
         {
             return View();

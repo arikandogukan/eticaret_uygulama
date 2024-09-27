@@ -1,7 +1,8 @@
 ﻿using eticaret_uygulama.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 
-namespace eticaret_uygulama.Component
+namespace eticaret_uygula.Component
 {
     public class TrendList : ViewComponent
     {
@@ -11,6 +12,7 @@ namespace eticaret_uygulama.Component
         {
             _context = context;
         }
+
         public IViewComponentResult Invoke()
         {
             var result = _context.Products.ToList();

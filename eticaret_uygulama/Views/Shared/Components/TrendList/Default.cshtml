@@ -1,4 +1,5 @@
-﻿@model List<eticaret_uygulama.Models.Products>
+﻿
+@model List<eticaret_uygulama.Models.Products>
 
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
@@ -19,13 +20,18 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Detay</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Sepete Ekle</a>
+                    <a href="/Home/Detay/@item.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Detay</a>
+                    <a href="/Cart/Add/@item.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Sepette Ekle</a>
                 </div>
             </div>
         </div>
-
-        }     
-       </div>    
+        }
       
+      
+      
+        
+      
+     
+     
+    </div>
 </div>
