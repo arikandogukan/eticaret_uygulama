@@ -1,15 +1,14 @@
 ﻿@model eticaret_uygulama.Models.Products
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Sil</h1>
+<h1>Details</h1>
 
-<h3>Silmek istediğinize emin misiniz?</h3>
 <div>
-    <h4>Ürünler</h4>
+    <h4>Products</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -49,10 +48,8 @@
             @Html.DisplayFor(model => model.Category.CategoryId)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ProductId" />
-        <input type="submit" value="Sil" class="btn btn-danger" /> |
-        <a asp-action="Index">Geri Dön!</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

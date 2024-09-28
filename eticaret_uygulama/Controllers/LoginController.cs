@@ -14,30 +14,30 @@ namespace eticaret_uygulama.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-
-        [HttpPost]
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel gelen)
         {
-          
             if (!ModelState.IsValid)
             {
                 return View(gelen);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(gelen.UserName, gelen.Password, false, true);
+            var user = await _userManager.FindByNameAsync(gelen.UserName);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya şifre.");
+                return View(gelen);
+            }
 
+            var result = await _signInManager.PasswordSignInAsync(user, gelen.Password, false, true);
 
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByNameAsync(gelen.UserName);
-
                 if (user.EmailConfirmed)
                 {
                     return RedirectToAction("Index", "MyAccount");
@@ -49,9 +49,13 @@ namespace eticaret_uygulama.Controllers
                 }
             }
 
-            if (result.IsLockedOut)
+            if (result.IsNotAllowed)
             {
-                ModelState.AddModelError(string.Empty, "Hesabınız kilitlenmiş.");
+                ModelState.AddModelError(string.Empty, "Kullanıcı girişi engellenmiştir.");
+            }
+            else if (result.IsLockedOut)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı hesabı kilitlenmiştir.");
             }
             else
             {
