@@ -473,7 +473,7 @@
 		this.$element.append(this.$stage.parent());
 
 		// append content
-		this.replace(this.$element.children().not(this.$stage.parent()));
+		//this.replace(this.$element.children().not(this.$stage.parent()));
 
 		// check visibility
 		if (this.$element.is(':visible')) {
